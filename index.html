@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./styles/output.css" />
+    <title>Cardápio Bueno Pizza</title>
+</head>
+
+<body>
+
+    <!-- HEADER-->
+    <header class="w-full h-[420px] bg-zinc-800 bg-home bg-cover bg-center">
+        <div class="w-full h-full flex flex-col justify-center items-center">
+            <img src="./assets/pizzaLogo.jpg" alt="Logo Pizzaria"
+                class="w-32 h-32 rounded-full shadow-lg hover:scale-110 duration-200" />
+            <h1 class="text-3xl mt-4 mb-2 font-bold text-white">Pizzaria Bueno</h1>
+            <span class="text-white font-medium"> Rua Fulano Ciclano, 99 - Joinville - SC</span>
+            <div class="bg-green-600 px-4 py-1 rounded-lg mt-5" id="date-span">
+                <span class="text-white font-medium">Seg à Dom - 18:00 às 23:00</span>
+            </div>
+        </div>
+    </header>
+    <!-- FIM DO HEADER-->
+    <h2 class="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">Conheça nosso Cardápio!</h2>
+    <!-- INICIO DO MENU -->
+    <div id="menu">
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16">
+            <!-- INICIO DO PRODUTO -->
+
+            <div class="flex gap-2 w-full">
+                <img src="./assets/atum.png" alt="Pizza sabor Atum"
+                    class="w-28 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                <div class="w-full">
+                    <p class="font-bold">Atum</p>
+                    <p class="text-sm">Pizza sabor Atum ralado.</p>
+
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg ">R$49,90</p>
+                        <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                            data-name="Pizza Atum ralado" data-price="49.90">
+                            <i class="fa-solid fa-cart-plus text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIM DO PRODUTO -->
+            <!-- INICIO DO PRODUTO -->
+
+            <div class="flex gap-2 w-full">
+                <img src="./assets/brocolis-com-catupiry.png" alt="Pizza sabor Brócolis com Catupiry"
+                    class="w-28 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                <div class="w-full">
+                    <p class="font-bold">Brócolis com Catupiry</p>
+                    <p class="text-sm">Pizza sabor Brócolis com Catupiry.</p>
+
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg ">R$49,90</p>
+                        <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                            data-name="Pizza Brócolis com Catupiry" data-price="49.90">
+                            <i class="fa-solid fa-cart-plus text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIM DO PRODUTO -->
+            <!-- INICIO DO PRODUTO -->
+
+            <div class="flex gap-2 w-full">
+                <img src="./assets/calabresa.png" alt="Pizza sabor Calabresa"
+                    class="w-28 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                <div class="w-full">
+                    <p class="font-bold">Calabresa</p>
+                    <p class="text-sm">Pizza sabor Calabresa, com cebola.</p>
+
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg ">R$49,90</p>
+                        <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                            data-name="Pizza Calabresa" data-price="49.90">
+                            <i class="fa-solid fa-cart-plus text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIM DO PRODUTO -->
+            <!-- INICIO DO PRODUTO -->
+
+            <div class="flex gap-2 w-full">
+                <img src="./assets/camarao-c-catupiry.png" alt="Pizza sabor Camarão com catupiry"
+                    class="w-28 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                <div class="w-full">
+                    <p class="font-bold">Camarão</p>
+                    <p class="text-sm">Pizza Camarão com catupiry.</p>
+
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg ">R$49,90</p>
+                        <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                            data-name="Pizza Camarão com Catupiry" data-price="49.90">
+                            <i class="fa-solid fa-cart-plus text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIM DO PRODUTO -->
+
+        </main>
+
+        <div class="mx-auto max-w-7xl px-2 my-2">
+            <h2 class="font-bold text-2xl">
+                Bebidas
+            </h2>
+
+            <!-- GRID BEBIDAS -->
+            <div class="class=grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full">
+                    <img src="./assets/cocalata.png" alt="Coca Lata 250ml"
+                        class="w-20 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Coca Lata </p>
+                        <p class="text-sm">Refrigerante em Lata 250ml.</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Coca Lata 250ml" data-price="5.99">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full">
+                    <img src="./assets/cocagarrafa.png" alt="Coca Garrafa 2 litros"
+                        class="w-20 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Coca 2L</p>
+                        <p class="text-sm">Refrigerante 2L.</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$12,99</p>
+                            <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Coca 2L" data-price="12.99">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+
+            </div>
+
+            <!-- FIM GRID BEBIDAS -->
+
+        </div>
+    </div>
+    <!-- FIM DO MENU -->
+    <!--MODAL CART-->
+    <div id="cart-modal" class="bg-black/70 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden">
+        <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
+            <h2 class="text-center font-bold text-2xl mb-2">Meu Carrinho</h2>
+            <div id="cart-items" class="flex justify-between mb-2 flex-col"></div>
+
+            <p class="font-bold">Total: <span id="cart-total">0.00</span></p>
+            <p class="font-bold mt-2">Endereço de Entrega:</p>
+            <input type="text" placeholder="Digite seu Endereço completo..." id="address"
+                class="w-full border-2 p-1 rounded my-1" />
+            <p id="address-warn" class="text-red-500 hidden">Digite o endereço...</p>
+
+            <div class="flex items-center justify-between mt-5 w-full">
+                <button id="close-modal-btn">Fechar</button>
+                <button id="checkout-btn" class="bg-green-500 text-white px-4 py-1 rounded" >Finalizar Pedido</button>
+            </div>
+        </div>
+
+
+    </div>
+    <!--FIM DO MODAL CART-->
+
+    <footer class="w-full bg-red-500 py-2 fixed bottom-0 z-40 flex items-center justify-center">
+        <button class="flex items-center gap-2 text-white font-bold" id="cart-btn">
+            (<span id="cart-count">0</span>)
+            Veja seu carrinho
+            <i class="fa fa-cart-plus text-lg text-white"></i>
+        </button>
+    </footer>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="script.js"></script>
+</body>
+</html>
