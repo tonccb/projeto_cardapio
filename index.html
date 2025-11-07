@@ -142,7 +142,8 @@
 
                         <div class="flex items-center gap-2 justify-between mt-3">
                             <p class="font-bold text-lg ">R$5,99</p>
-                            <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
                                 data-name="Coca Lata 250ml" data-price="5.99">
                                 <i class="fa-solid fa-cart-plus text-lg"></i>
                             </button>
@@ -162,7 +163,8 @@
 
                         <div class="flex items-center gap-2 justify-between mt-3">
                             <p class="font-bold text-lg ">R$12,99</p>
-                            <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
                                 data-name="Coca 2L" data-price="12.99">
                                 <i class="fa-solid fa-cart-plus text-lg"></i>
                             </button>
@@ -183,17 +185,42 @@
     <div id="cart-modal" class="bg-black/70 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden">
         <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
             <h2 class="text-center font-bold text-2xl mb-2">Meu Carrinho</h2>
-            <div id="cart-items" class="flex justify-between mb-2 flex-col"></div>
+            <div id="cart-items" class="flex justify-between mb-1 flex-col"></div>
+            <p class="font-bold text-xl mt-0">Total: <span id="cart-total">0.00</span></p>
+            <div>
+                <p class="font-bold mt-4 border-t border-gray-300 pt-4">Nome:</p>
+                <input type="text" placeholder="Digite seu nome..." id="name"
+                    class="w-full border-2 p-1 rounded my-1" />
+                <p id="name-warn" class="text-red-600 text-sm hidden">Por favor, informe seu nome.</p>
+            </div>
+            <div>
+                <p class="font-bold mt-2">Telefone para contato:</p>
+                <input type="text" placeholder="(99) 99999-9999" id="cellphone"
+                    class="w-full border-2 p-1 rounded my-1" />
+                <p id="phone-warn" class="text-red-600 text-sm hidden">Por favor, informe um telefone válido.</p>
+            </div>
+            <div class="mt-2 flex " id="deliveryType">
+                <label class="font-bold">
+                    <input type="radio" name="deliveryType" value="pickup" id="pickup" checked>
+                    Retirar
+                </label>
 
-            <p class="font-bold">Total: <span id="cart-total">0.00</span></p>
-            <p class="font-bold mt-2">Endereço de Entrega:</p>
-            <input type="text" placeholder="Digite seu Endereço completo..." id="address"
-                class="w-full border-2 p-1 rounded my-1" />
-            <p id="address-warn" class="text-red-500 hidden">Digite o endereço...</p>
+                <label class="font-bold mx-2">
+                    <input type="radio" name="deliveryType" value="delivery" id="delivery">
+                    Entrega
+                </label>
+            </div>
+
+            <div class="hidden" id="address-container">
+                <p class="font-bold mt-2">Endereço de Entrega:</p>
+                <input type="text" placeholder="Rua, Número, Complemento..." id="address"
+                    class="w-full border-2 p-1 rounded my-1" />
+                <p id="address-warn" class="text-red-600 hidden">Por favor, informe o endereço de entrega...</p>
+            </div>
 
             <div class="flex items-center justify-between mt-5 w-full">
                 <button id="close-modal-btn">Fechar</button>
-                <button id="checkout-btn" class="bg-green-500 text-white px-4 py-1 rounded" >Finalizar Pedido</button>
+                <button id="checkout-btn" class="bg-green-500 text-white px-4 py-1 rounded">Finalizar Pedido</button>
             </div>
         </div>
 
@@ -209,7 +236,8 @@
         </button>
     </footer>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
