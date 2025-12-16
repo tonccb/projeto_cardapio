@@ -1,287 +1,266 @@
-const menu = document.getElementById("menu")
-const cartBtn = document.getElementById("cart-btn")
-const cartModal = document.getElementById("cart-modal")
-const cartItemsContainer = document.getElementById("cart-items")
-const cartTotal = document.getElementById("cart-total")
-const checkoutBtn = document.getElementById("checkout-btn")
-const closeModalBtn = document.getElementById("close-modal-btn")
-const cartCounter = document.getElementById("cart-count")
+// ==================== Variáveis / Elementos ====================
+const menu = document.getElementById("menu"); // só usar se precisar; eventos usam delegation abaixo
+const cartBtn = document.getElementById("cart-btn");
+const cartModal = document.getElementById("cart-modal");
+const cartItemsContainer = document.getElementById("cart-items");
+const cartTotalEl = document.getElementById("cart-total");
+const checkoutBtn = document.getElementById("checkout-btn");
+const closeModalBtn = document.getElementById("close-modal-btn");
+const cartCounter = document.getElementById("cart-count");
 
-const nameInput = document.getElementById("name")
-const cellphoneInput = document.getElementById("cellphone")
-const deliveryTypeRadios = document.querySelectorAll('input[name="deliveryType"]')
-const addressContainer = document.getElementById("address-container")
-const addressInput = document.getElementById("address")
+const sizeModal = document.getElementById("sizeModal");
+const productModalImg = document.getElementById("productModalImg");
+const sizeOptionsContainer = document.getElementById("sizeOptionsContainer");
+const cancelSizeBtn = document.getElementById("cancelSizeBtn");
 
-const addressWarn = document.getElementById("address-warn")
-const nameWarn = document.getElementById("name-warn")
-const phoneWarn = document.getElementById("phone-warn")
+const nameInput = document.getElementById("name");
+const cellphoneInput = document.getElementById("cellphone");
+const addressInput = document.getElementById("address");
+const addressContainer = document.getElementById("address-container");
+const deliveryTypeRadios = document.querySelectorAll('input[name="deliveryType"]');
 
-let cart = []
+let cart = [];
+let selectedProduct = null; // { name: string, price: number, img: string }
 
-
-// Abrir o modal do carrinho
-cartBtn.addEventListener("click", () => {
-  cartModal.style.display = "flex"
-})
-
-// Fechar o modal do carrinho
-cartModal.addEventListener("click", function (event) {
-  if (event.target === cartModal || event.target === closeModalBtn) {
-    cartModal.style.display = "none"
-  }
-})
-
-
-menu.addEventListener("click", function (event) {
-  let parentButton = event.target.closest(".add-to-cart-btn") // Seleciona o botão pai mais próximo com a classe "add-to-cart-btn"
-
-  if (parentButton) {
-    const name = parentButton.getAttribute("data-name")
-    const price = parseFloat(parentButton.getAttribute("data-price"))
-
-    addToCart(name, price)
-
-  }
-})
-
-function addToCart(name, price) {
-
-  const existingItem = cart.find(item => item.name === name)
-  if (existingItem) {
-    existingItem.quantity += 1
-
-  } else {
-    cart.push({ name, price, quantity: 1 })
-  }
-
-  updateCartModal()
-  cartCounter.textContent = cart.reduce((acc, item) => acc + item.quantity, 0)
-
+// ==================== Helpers ====================
+function toNumber(v, fallback = 0) {
+  const n = Number(String(v).replace(",", "."));
+  return Number.isFinite(n) ? n : fallback;
 }
 
+function formatBRL(n) {
+  return `R$ ${n.toFixed(2)}`;
+}
+
+function updateCartCountAndTotal() {
+  const count = cart.reduce((acc, i) => acc + (i.quantity || 0), 0);
+  cartCounter.textContent = String(count);
+  const total = cart.reduce((acc, i) => acc + (toNumber(i.price) * (i.quantity || 0)), 0);
+  cartTotalEl.textContent = cart.length > 0 ? formatBRL(total) : "R$ 0.00";
+}
+
+// ==================== Abrir modal de tamanhos (delegation) ====================
+// Ao clicar num botão .add-to-cart-btn avaliamos data-has-size
+document.addEventListener("click", (e) => {
+  const addBtn = e.target.closest(".add-to-cart-btn");
+  if (!addBtn) return;
+
+  const name = String(addBtn.dataset.name || "Produto");
+  const rawPrice = addBtn.dataset.price;
+  const price = toNumber(rawPrice, 0);
+  const hasSize = String(addBtn.dataset.hasSize || "false") === "true";
+
+  // tenta pegar img dentro do mesmo bloco .flex (ou primeira img próxima)
+  const parentFlex = addBtn.closest(".flex");
+  const imgEl = parentFlex ? parentFlex.querySelector("img") : null;
+  const imgSrc = imgEl ? imgEl.src : "./assets/pizzagraulogo.jpg";
+
+  if (hasSize) {
+    openSizeModal(name, price, imgSrc);
+  } else {
+    // item sem tamanho: adiciona direto
+    addToCart(name, price, null);
+    Toastify({
+      text: `✅ ${name} adicionada ao carrinho!`,
+      duration: 2000,
+      gravity: "top",
+      position: "right",
+      style: { background: "#22c55e" }
+    }).showToast();
+  }
+});
+
+// ==================== openSizeModal ====================
+function openSizeModal(name, price, img) {
+  selectedProduct = { name: String(name), price: toNumber(price, 0), img: img || "./assets/pizzagraulogo.jpg" };
+  // mostra modal
+  sizeModal.classList.remove("hidden");
+  // preencher imagem e nome
+  if (productModalImg) {
+    productModalImg.src = selectedProduct.img;
+    productModalImg.alt = selectedProduct.name;
+  }
+  const modalNameEl = document.getElementById("modalProductName");
+  if (modalNameEl) modalNameEl.textContent = selectedProduct.name;
+
+  // tamanhos definidos: P = 30.00 (fixo), G = preço original
+  const sizes = [
+    { label: "P", price: 30.0 },
+    { label: "G", price: selectedProduct.price }
+  ];
+
+  sizeOptionsContainer.innerHTML = sizes.map(s => {
+    const p = toNumber(s.price, 0);
+    return `
+      <div class="flex flex-col items-center justify-center">
+        <button
+          data-size="${s.label}"
+          data-price="${p}"
+          class="option w-16 h-16 rounded-full bg-yellow-500 text-black text-2xl font-bold shadow-md
+                hover:bg-yellow-600 hover:scale-110 transition-all duration-200
+                flex items-center justify-center">
+          ${s.label}
+        </button>
+
+        <p class="mt-2 text-sm font-semibold text-gray-700">
+          ${formatBRL(p)}
+        </p>
+      </div>
+    `;
+  }).join("");
+}
+
+// ==================== Seleção de tamanho (delegation) ====================
+sizeOptionsContainer.addEventListener("click", (e) => {
+  const btn = e.target.closest(".option");
+  if (!btn) return;
+
+  const size = String(btn.dataset.size || "G");
+  const sizePrice = toNumber(btn.dataset.price, 0);
+
+  // Segurança: selectedProduct deve existir
+  const prodName = selectedProduct && selectedProduct.name ? String(selectedProduct.name) : "Produto";
+  addToCart(prodName, sizePrice, size);
+
+  sizeModal.classList.add("hidden");
+  selectedProduct = null;
+
+  Toastify({
+    text: `✅ ${prodName} (${size}) adicionado ao carrinho!`,
+    duration: 2000,
+    gravity: "top",
+    position: "right",
+    style: { background: "#22c55e" }
+  }).showToast();
+});
+
+// ==================== fechar modal ====================
+cancelSizeBtn.addEventListener("click", () => {
+  sizeModal.classList.add("hidden");
+  selectedProduct = null;
+});
+sizeModal.addEventListener("click", (e) => {
+  if (e.target === sizeModal) {
+    sizeModal.classList.add("hidden");
+    selectedProduct = null;
+  }
+});
+
+// ==================== adicionar ao carrinho (robusto) ====================
+function addToCart(name, price, size = null) {
+  const safeName = typeof name === "string" ? name : JSON.stringify(name);
+  const safePrice = toNumber(price, 0);
+  const safeSize = size === null ? null : String(size);
+
+  const existing = cart.find(i => i.name === safeName && (i.size || null) === safeSize);
+  if (existing) {
+    existing.quantity = (existing.quantity || 0) + 1;
+  } else {
+    cart.push({ name: safeName, price: safePrice, size: safeSize, quantity: 1 });
+  }
+
+  updateCartModal();
+  updateCartCountAndTotal();
+}
+
+// ==================== render do carrinho ====================
 function updateCartModal() {
   cartItemsContainer.innerHTML = "";
 
-  let total = 0;
-  let itemCount = 0;
-
   cart.forEach(item => {
-    const cartItemsElement = document.createElement("div");
-    cartItemsElement.className =
-      "flex justify-between items-center w-full mb-6 border-b border-gray-300 pb-3";
+    const sizeText = item.size ? `<p class="text-sm text-gray-500">Tamanho: ${item.size}</p>` : "";
+    const line = document.createElement("div");
+    line.className = "flex justify-between items-center w-full mb-4 border-b border-gray-200 pb-3";
 
-    cartItemsElement.innerHTML = `
+    line.innerHTML = `
       <div>
         <p class="font-medium">${item.name}</p>
+        ${sizeText}
         <p>${item.quantity}x</p>
-        <p class="font-bold">R$ ${(item.price * item.quantity).toFixed(2)}</p>
+        <p class="font-bold">${formatBRL(toNumber(item.price,0) * item.quantity)}</p>
       </div>
       <div>
-        <button class="bg-red-500 text-white px-5 rounded hover:bg-red-600 duration-200 remove-item-btn">
-          Remover
-        </button>
+        <button class="remove-item-btn bg-red-500 text-white px-4 py-1 rounded">Remover</button>
       </div>
     `;
 
-    total += item.price * item.quantity;
-    itemCount += item.quantity;
-
-    // Funcionalidade de remoção
-    const removeBtn = cartItemsElement.querySelector(".remove-item-btn");
-
-    removeBtn.addEventListener("click", () => {
+    // remover botão
+    line.querySelector(".remove-item-btn").addEventListener("click", () => {
       if (item.quantity > 1) {
-        item.quantity -= 1; // Diminui apenas uma unidade
+        item.quantity -= 1;
       } else {
-        // Remove completamente o item quando a quantidade chega a 1
-        cart = cart.filter(cartItem => cartItem.name !== item.name);
+        cart = cart.filter(ci => !(ci.name === item.name && (ci.size || null) === (item.size || null)));
       }
-
-      // Atualiza o modal e o contador sempre após a ação
       updateCartModal();
-      cartCounter.textContent = cart.reduce((acc, item) => acc + item.quantity, 0);
+      updateCartCountAndTotal();
     });
 
-
-    cartItemsContainer.appendChild(cartItemsElement);
+    cartItemsContainer.appendChild(line);
   });
 
-  // Atualizar total no final do loop
-  cartTotal.textContent = cart.length > 0 ? `R$ ${total.toFixed(2)}` : "R$ 0.00"; // se o carrinho estiver vazio, mostrar R$ 0.00
+  updateCartCountAndTotal();
 }
 
+// ==================== MODAL CARRINHO ====================
+cartBtn.addEventListener("click", () => { cartModal.style.display = "flex"; updateCartModal(); });
+closeModalBtn.addEventListener("click", () => { cartModal.style.display = "none"; });
+cartModal.addEventListener("click", (e) => { if (e.target === cartModal) cartModal.style.display = "none"; });
 
-// Controle de visibilidade do Endereço //
-
+// ==================== endereço (mostrar/ocultar) ====================
 function updateAddressVisibility() {
   const selected = document.querySelector('input[name="deliveryType"]:checked')?.value;
   if (selected === "delivery") {
     addressContainer.classList.remove("hidden");
   } else {
     addressContainer.classList.add("hidden");
-    addressInput.value = "";
-    addressWarn.classList.add("hidden");
-    addressInput.classList.remove("border-red-600");
+    if (addressInput) addressInput.value = "";
   }
 }
-
-deliveryTypeRadios.forEach(radio => {
-  radio.addEventListener("change", () => {
-    updateAddressVisibility();
-  });
-});
-
+deliveryTypeRadios.forEach(r => r.addEventListener("change", updateAddressVisibility));
 updateAddressVisibility();
 
-
-addressInput.addEventListener("input", function (event) {
-  if (event.target.value.trim() !== "") {
-    addressWarn.classList.add("hidden");
-    addressInput.classList.remove("border-red-600");
-  }
-});
-
-nameInput.addEventListener("input", function () {
-  if (nameInput.value.trim() !== "") {
-    nameWarn.classList.add("hidden");
-    nameInput.classList.remove("border-red-600")
-  }
-});
-
-cellphoneInput.addEventListener("input", function () {
-  const digits = cellphoneInput.value.replace(/\D/g, "");
-  if (digits.length >= 10) {
-    phoneWarn.classList.add("hidden");
-    cellphoneInput.classList.remove("border-red-600")
-  }
-});
-
-// Validação de Telefone Simples
+// ==================== validação / checkout ====================
 function isValidPhone(phone) {
-  const digits = (phone || "").replace(/\D/g, "");
+  const digits = String(phone || "").replace(/\D/g, "");
   return digits.length >= 10;
 }
 
-
-
-addressInput.addEventListener("input", function (event) {
-  let inputValue = event.target.value;
-})
-
-
-
-
-// Exibir aviso se o endereço estiver vazio ao tentar finalizar a compra
 checkoutBtn.addEventListener("click", () => {
-  if (cart.length === 0) {
-    alert("Seu carrinho está vazio!")
-    return;
-  }
+  if (cart.length === 0) { alert("Seu carrinho está vazio!"); return; }
 
-  // Validação dos Inputs do Cliente
-
-  if (nameInput.value.trim() === "") {
-    nameWarn.classList.remove("hidden");
-    nameInput.classList.add("border-red-600");
-    return;
-  } else {
-    nameWarn.classList.add("hidden");
-    nameInput.classList.remove("border-red-600")
-  }
-
-  if (!isValidPhone(cellphoneInput.value)) {
-    phoneWarn.classList.remove("hidden");
-    cellphoneInput.classList.add("border-red-600");
-    cellphoneInput.focus();
-    return;
-  } else {
-    phoneWarn.classList.add("hidden")
-    cellphoneInput.classList.remove("border-red-600");
-  }
-
-  // Se o delivery estiver selecionado, valida o endereço
-
+  // validações simples
+  if (!nameInput.value.trim()) { alert("Informe seu nome"); nameInput.focus(); return; }
+  if (!isValidPhone(cellphoneInput.value)) { alert("Informe telefone válido"); cellphoneInput.focus(); return; }
   const selectedDelivery = document.querySelector('input[name="deliveryType"]:checked')?.value;
-  if (selectedDelivery === "delivery") {
-    if (addressInput.value.trim() === "") {
-      addressWarn.classList.remove("hidden");
-      addressInput.classList.add("border-red-600");
-      addressInput.focus();
-      return;
-    } else {
-      addressWarn.classList.add("hidden");
-      addressInput.classList.remove("border-red-600")
-    }
-  }
+  if (selectedDelivery === "delivery" && !addressInput.value.trim()) { alert("Informe endereço"); addressInput.focus(); return; }
 
+  const cartText = cart.map(i => `✅ ${i.name} (${i.size || "-"}) - ${i.quantity}x - ${formatBRL(i.price * i.quantity)}`).join("\n");
+  const customerInfo = `\n\n👤 ${nameInput.value}\n📞 ${cellphoneInput.value}\n${selectedDelivery === "delivery" ? `📍 ${addressInput.value}` : "📍 Retirada"}`;
 
+  const message = encodeURIComponent(cartText + customerInfo);
+  const phone = "+5547984179856";
+  window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${message}`, "_blank");
 
-  const isOpen = checkIfOpen()
-  if (!isOpen) {
-    Toastify({
-      text: "Ops, estamos fechados no momento!",
-      duration: 3000,
-      destination: "https://github.com/apvarun/toastify-js",
-      close: true,
-      gravity: "top", // `top` or `bottom`
-      position: "right", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      style: {
-        background: "#ef4444 ",
-      },
-      onClick: function () { } // Callback after click
-    }).showToast();
-    return;
-  }
-
-  //Monta mensagem do Pedido
-
-  const cartItems = cart.map((item) => {
-    return (
-      `✅ ${item.name} - Quantidade: ${item.quantity} - Preço: R$ ${(item.price * item.quantity).toFixed(2)} |`
-    );
-  }).join("\n"); // Une os itens do carrinho em uma única string
-
-  const message = encodeURIComponent(cartItems);
-  const phone = "+5547984179856"; // Substitua pelo número de telefone desejado, incluindo o código do país
-
-  let customerInfo = `\n\n👤 Nome: ${nameInput.value}\n📞 Telefone: ${cellphoneInput.value}`;
-  if (selectedDelivery === "delivery") {
-    customerInfo += `\n📍 Endereço: ${addressInput.value}`;
-  } else {
-    customerInfo += `\n📍 Retirada: Cliente fará a retirada`;
-  }
-
-  window.open(
-    `https://api.whatsapp.com/send?phone=${phone}&text=💬 Olá! Quero finalizar meu Pedido:%0A %0A${message}%0A %0A📍 Endereço de entrega: ${addressInput.value}`,
-    "_blank"
-  );
-
-  // limpa carrinho e formulário
+  // limpa
   cart = [];
   updateCartModal();
-  cartCounter.textContent = "0";
-  addressInput.value = "";
-  nameInput.value = "";
-  cellphoneInput.value = "";
+  updateCartCountAndTotal();
+  cartModal.style.display = "none";
+  nameInput.value = cellphoneInput.value = addressInput.value = "";
   updateAddressVisibility();
 });
 
-function checkIfOpen() {
-  const data = new Date();
-  const hora = data.getHours();
-  return hora >= 18 && hora < 23;
-
-}
-
-const spanItem = document.getElementById("date-span")
-const isOpen = checkIfOpen()
-
-if (isOpen) {
-  spanItem.classList.remove("bg-red-500")
-  spanItem.classList.add("bg-green-600")
-} else {
-  spanItem.classList.remove("bg-green-600")
-  spanItem.classList.add("bg-red-500")
-}
+// ==================== horário funcionamento visual ====================
+(function updateOpenBadge() {
+  const spanItem = document.getElementById("date-span");
+  const now = new Date().getHours();
+  if (!spanItem) return;
+  if (now >= 18 && now < 23) {
+    spanItem.classList.remove("bg-red-500");
+    spanItem.classList.add("bg-green-600");
+  } else {
+    spanItem.classList.remove("bg-green-600");
+    spanItem.classList.add("bg-red-500");
+  }
+})();
+// ==================== Fim do script ====================

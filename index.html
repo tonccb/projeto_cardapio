@@ -27,10 +27,10 @@
     <!-- HEADER-->
     <header class="w-full h-[420px] bg-zinc-800 bg-home bg-cover bg-center">
         <div class="w-full h-full flex flex-col justify-center items-center">
-            <img src="./assets/pizzaLogo.jpg" alt="Logo Pizzaria"
-                class="w-32 h-32 rounded-full shadow-lg hover:scale-110 duration-200" />
-            <h1 class="text-3xl mt-4 mb-2 font-bold text-white">Pizzaria Bueno</h1>
-            <span class="text-white font-medium"> Rua Fulano Ciclano, 99 - Joinville - SC</span>
+            <img src="./assets/pizzagraulogo.jpg" alt="Logo Pizzaria"
+                class="w-36 h-36 rounded-full shadow-lg hover:scale-110 duration-200" />
+            <h1 class="text-3xl mt-4 mb-2 font-bold text-white">Grau Pizzaria</h1>
+            <span class="text-white font-medium"> Sua Pizzaria artesanal em São Miguel Arcanjo! </span>
             <div class="bg-green-600 px-4 py-1 rounded-lg mt-5" id="date-span">
                 <span class="text-white font-medium">Seg à Dom - 18:00 às 23:00</span>
             </div>
@@ -40,9 +40,9 @@
     <h2 class="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">Conheça nosso Cardápio!</h2>
     <!-- INICIO DO MENU -->
     <div id="menu">
+        <h2 class="text-2xl md:text-2xl font-bold text-center mt-9 mb-6">Pizzas Tradicionais</h2>
         <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16">
             <!-- INICIO DO PRODUTO -->
-
             <div class="flex gap-2 w-full">
                 <img src="./assets/atum.png" alt="Pizza sabor Atum"
                     class="w-28 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
@@ -51,9 +51,9 @@
                     <p class="text-sm">Pizza sabor Atum ralado.</p>
 
                     <div class="flex items-center gap-2 justify-between mt-3">
-                        <p class="font-bold text-lg ">R$49,90</p>
+                        <p class="font-bold text-lg ">R$49,90 (G)</p>
                         <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
-                            data-name="Pizza Atum ralado" data-price="49.90">
+                            data-name="Pizza Atum ralado" data-price="49.90" data-has-size="true">
                             <i class="fa-solid fa-cart-plus text-lg"></i>
                         </button>
                     </div>
@@ -71,9 +71,9 @@
                     <p class="text-sm">Pizza sabor Brócolis com Catupiry.</p>
 
                     <div class="flex items-center gap-2 justify-between mt-3">
-                        <p class="font-bold text-lg ">R$49,90</p>
+                        <p class="font-bold text-lg ">R$49,90 (G)</p>
                         <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
-                            data-name="Pizza Brócolis com Catupiry" data-price="49.90">
+                            data-name="Pizza Brócolis com Catupiry" data-price="49.90" data-has-size="true">
                             <i class="fa-solid fa-cart-plus text-lg"></i>
                         </button>
                     </div>
@@ -91,9 +91,9 @@
                     <p class="text-sm">Pizza sabor Calabresa, com cebola.</p>
 
                     <div class="flex items-center gap-2 justify-between mt-3">
-                        <p class="font-bold text-lg ">R$49,90</p>
+                        <p class="font-bold text-lg ">R$49,90 (G)</p>
                         <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
-                            data-name="Pizza Calabresa" data-price="49.90">
+                            data-name="Pizza Calabresa" data-price="49.90" data-has-size="true">
                             <i class="fa-solid fa-cart-plus text-lg"></i>
                         </button>
                     </div>
@@ -111,9 +111,9 @@
                     <p class="text-sm">Pizza Camarão com catupiry.</p>
 
                     <div class="flex items-center gap-2 justify-between mt-3">
-                        <p class="font-bold text-lg ">R$49,90</p>
+                        <p class="font-bold text-lg ">R$49,90 (G)</p>
                         <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
-                            data-name="Pizza Camarão com Catupiry" data-price="49.90">
+                            data-name="Pizza Camarão com Catupiry" data-price="49.90" data-has-size="true">
                             <i class="fa-solid fa-cart-plus text-lg"></i>
                         </button>
                     </div>
@@ -123,7 +123,342 @@
             <!-- FIM DO PRODUTO -->
 
         </main>
+        <!-- FIM DO MENU PIZZAS TRADICIONAIS-->
+        <!-- INICIO MENU PIZZAS ESPECIAIS -->
 
+         <h2 class="text-2xl md:text-2xl font-bold text-center mt-9 mb-6">Pizzas Especiais</h2>
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16">
+            <!-- INICIO DO PRODUTO -->
+            <div class="flex gap-2 w-full">
+                <img src="./assets/atum.png" alt="Pizza sabor Atum"
+                    class="w-28 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                <div class="w-full">
+                    <p class="font-bold">Atum</p>
+                    <p class="text-sm">Pizza sabor Atum ralado.</p>
+
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg ">R$49,90 (G)</p>
+                        <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                            data-name="Pizza Atum ralado" data-price="49.90" data-has-size="true">
+                            <i class="fa-solid fa-cart-plus text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIM DO PRODUTO -->
+            <!-- INICIO DO PRODUTO -->
+
+            <div class="flex gap-2 w-full">
+                <img src="./assets/brocolis-com-catupiry.png" alt="Pizza sabor Brócolis com Catupiry"
+                    class="w-28 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                <div class="w-full">
+                    <p class="font-bold">Brócolis com Catupiry</p>
+                    <p class="text-sm">Pizza sabor Brócolis com Catupiry.</p>
+
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg ">R$49,90 (G)</p>
+                        <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                            data-name="Pizza Brócolis com Catupiry" data-price="49.90" data-has-size="true">
+                            <i class="fa-solid fa-cart-plus text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIM DO PRODUTO -->
+            <!-- INICIO DO PRODUTO -->
+
+            <div class="flex gap-2 w-full">
+                <img src="./assets/calabresa.png" alt="Pizza sabor Calabresa"
+                    class="w-28 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                <div class="w-full">
+                    <p class="font-bold">Calabresa</p>
+                    <p class="text-sm">Pizza sabor Calabresa, com cebola.</p>
+
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg ">R$49,90 (G)</p>
+                        <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                            data-name="Pizza Calabresa" data-price="49.90" data-has-size="true">
+                            <i class="fa-solid fa-cart-plus text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIM DO PRODUTO -->
+            <!-- INICIO DO PRODUTO -->
+
+            <div class="flex gap-2 w-full">
+                <img src="./assets/camarao-c-catupiry.png" alt="Pizza sabor Camarão com catupiry"
+                    class="w-28 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                <div class="w-full">
+                    <p class="font-bold">Camarão</p>
+                    <p class="text-sm">Pizza Camarão com catupiry.</p>
+
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg ">R$49,90 (G)</p>
+                        <button class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                            data-name="Pizza Camarão com Catupiry" data-price="49.90" data-has-size="true">
+                            <i class="fa-solid fa-cart-plus text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIM DO PRODUTO -->
+
+        </main>
+        <!-- FIM DO MENU PIZZAS ESPECIAIS-->
+
+        <!-- INICIO GRID ESFIHAS -->
+        <div>
+            <div class="mx-auto max-w-7xl px-2 my-2 text-2xl font-bold text-center">
+                Esfihas
+            </div>
+            </h2>
+
+            <!-- GRID ESFIHAS -->
+            <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16">
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-ful my-4">
+                    <img src="./assets/esfiha carne com catupiry.png" alt="Carne com Catupiry"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Carne com Catupiry </p>
+                        <p class="text-sm">Esfiha de Carne moída com Catupiry</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Esfiha Carne com Catupiry" data-price="5.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full my-4">
+                    <img src="./assets/esfiha calabresa com catupiry.png" alt="Calabresa com Catupiry"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Calabresa com Catupiry </p>
+                        <p class="text-sm">Esfiha de Calabresa com Catupiry</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Esfiha Calabresa com Catupiry" data-price="5.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full my-4">
+                    <img src="./assets/esfiha queijo com bacon.png" alt="Quejo com Bacon"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Queijo com Bacon </p>
+                        <p class="text-sm">Esfiha de Queijo com Bacon</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Esfiha Queijo com Bacon" data-price="5.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full my-4">
+                    <img src="./assets/esfiha 3 queijos.png" alt="Três Queijos"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Três Queijos </p>
+                        <p class="text-sm">Esfiha de Mussarela, parmesão e Catupiry</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Esfiha Três Queijos" data-price="5.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full my-4">
+                    <img src="./assets/esfiha bauru.png" alt="Bauru"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Bauru </p>
+                        <p class="text-sm">Esfiha de Presunto e Queijo</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Esfiha Bauru" data-price="5.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full my-4">
+                    <img src="./assets/esfiha brocolis.png" alt="Brócolis"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Brócolis </p>
+                        <p class="text-sm">Esfiha de Brócolis com queijo</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Esfiha Brócolis" data-price="5.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full my-4">
+                    <img src="./assets/esfiha palmito.png" alt="Palmito"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Palmito </p>
+                        <p class="text-sm">Esfiha sabor Palmito</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Esfiha Palmito" data-price="5.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full my-4">
+                    <img src="./assets/esfiha milho.png" alt="Milho"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Milho </p>
+                        <p class="text-sm">Esfiha sabor Milho</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Esfiha Milho" data-price="5.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full my-4">
+                    <img src="./assets/esfiha frango cheddar bacon.png" alt="Frango com Cheddar e Bacon"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Frango com Cheddar e Bacon </p>
+                        <p class="text-sm">Esfiha de Frango com Cheddar e Bacon</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Esfiha Frango, cheddar e Bacon" data-price="5.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full my-4">
+                    <img src="./assets/esfiha 3 queijos.png" alt="Dois Queijos"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Dois Queijos</p>
+                        <p class="text-sm">Esfiha sabor Mussarela e Catupiry</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Esfiha Dois Queijos" data-price="5.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full my-4">
+                    <img src="./assets/esfiha queijo e alho frito.png" alt="Queijo e Alho frito"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Queijo e Alho frito </p>
+                        <p class="text-sm">Esfiha sabor Queijo com alho frito</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$5,99</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Esfiha Queijo com alho frito" data-price="5.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+
+
+            </div>
+
+            <!-- FIM GRID ESFIHAS -->
+
+        </div>
+    </div>
         <div class="mx-auto max-w-7xl px-2 my-2">
             <h2 class="font-bold text-2xl">
                 Bebidas
@@ -134,17 +469,17 @@
                 <!-- INICIO DO PRODUTO -->
 
                 <div class="flex gap-2 w-full">
-                    <img src="./assets/cocalata.png" alt="Coca Lata 250ml"
-                        class="w-20 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <img src="./assets/tubaina 2L.png" alt="Tubaína 2 litros"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
                     <div class="w-full">
-                        <p class="font-bold">Coca Lata </p>
-                        <p class="text-sm">Refrigerante em Lata 250ml.</p>
+                        <p class="font-bold">Tubaína 2L</p>
+                        <p class="text-sm">Refrigerante 2L.</p>
 
                         <div class="flex items-center gap-2 justify-between mt-3">
-                            <p class="font-bold text-lg ">R$5,99</p>
+                            <p class="font-bold text-lg ">R$9,00</p>
                             <button
                                 class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
-                                data-name="Coca Lata 250ml" data-price="5.99">
+                                data-name="Tubaína 2L" data-price="9.00" data-has-size="false">
                                 <i class="fa-solid fa-cart-plus text-lg"></i>
                             </button>
                         </div>
@@ -152,11 +487,12 @@
                 </div>
 
                 <!-- FIM DO PRODUTO -->
+                
                 <!-- INICIO DO PRODUTO -->
 
                 <div class="flex gap-2 w-full">
                     <img src="./assets/cocagarrafa.png" alt="Coca Garrafa 2 litros"
-                        class="w-20 h-28 hover:scale-110 hover:-rotate-2 duration-300 " />
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
                     <div class="w-full">
                         <p class="font-bold">Coca 2L</p>
                         <p class="text-sm">Refrigerante 2L.</p>
@@ -165,7 +501,51 @@
                             <p class="font-bold text-lg ">R$12,99</p>
                             <button
                                 class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
-                                data-name="Coca 2L" data-price="12.99">
+                                data-name="Coca 2L" data-price="12.99" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full">
+                    <img src="./assets/frutuba 2L.png" alt="Frutuba 2 litros"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Frutuba 2L</p>
+                        <p class="text-sm">Refrigerante 2L.</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$9,00</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Frutuba 2L" data-price="9.00" data-has-size="false">
+                                <i class="fa-solid fa-cart-plus text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIM DO PRODUTO -->
+                
+                <!-- INICIO DO PRODUTO -->
+
+                <div class="flex gap-2 w-full">
+                    <img src="./assets/del valle 2l.png" alt="Delvalle 2 litros"
+                        class="w-20 h-20 hover:scale-110 hover:-rotate-2 duration-300 " />
+                    <div class="w-full">
+                        <p class="font-bold">Delvalle 2L</p>
+                        <p class="text-sm">Refrigerante 2L.</p>
+
+                        <div class="flex items-center gap-2 justify-between mt-3">
+                            <p class="font-bold text-lg ">R$9,00</p>
+                            <button
+                                class="bg-black text-white px-5 rounded hover:bg-zinc-900 duration-200 add-to-cart-btn"
+                                data-name="Delvalle 2L" data-price="9.00" data-has-size="false">
                                 <i class="fa-solid fa-cart-plus text-lg"></i>
                             </button>
                         </div>
@@ -181,6 +561,26 @@
         </div>
     </div>
     <!-- FIM DO MENU -->
+    <!-- MODAL ESCOLHA TAMANHO-->
+    <div id="sizeModal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-80 text-center relative">
+
+        <img id="productModalImg" src="./assets/pizzagraulogo.jpg"
+             class="w-28 h-28 mx-auto mb-4 object-contain">
+
+        <p class="font-bold text-lg" id="modalProductName"></p>
+
+        <div id="sizeOptionsContainer" class="flex justify-center gap-8 mt-6 items-center"></div>
+
+        <button id="cancelSizeBtn"
+            class="mt-6 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+            Cancelar
+        </button>
+    </div>
+</div>
+
+
+    <!-- FIM DO MODAL ESCOLHA TAMANHO-->
     <!--MODAL CART-->
     <div id="cart-modal" class="bg-black/70 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden">
         <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
@@ -219,7 +619,7 @@
             </div>
 
             <div class="flex items-center justify-between mt-5 w-full">
-                <button id="close-modal-btn">Fechar</button>
+                <button id="close-modal-btn" class="bg-gray-300 px-4 py-1 rounded hover:bg-gray-400 ">Fechar</button>
                 <button id="checkout-btn" class="bg-green-500 text-white px-4 py-1 rounded">Finalizar Pedido</button>
             </div>
         </div>
