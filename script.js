@@ -234,12 +234,41 @@ checkoutBtn.addEventListener("click", () => {
   const selectedDelivery = document.querySelector('input[name="deliveryType"]:checked')?.value;
   if (selectedDelivery === "delivery" && !addressInput.value.trim()) { alert("Informe endereço"); addressInput.focus(); return; }
 
-  const cartText = cart.map(i => `✅ ${i.name} (${i.size || "-"}) - ${i.quantity}x - ${formatBRL(i.price * i.quantity)}`).join("\n");
-  const customerInfo = `\n\n👤 ${nameInput.value}\n📞 ${cellphoneInput.value}\n${selectedDelivery === "delivery" ? `📍 ${addressInput.value}` : "📍 Retirada"}`;
+    const itemsText = cart.map(item => {
+    return `✅ ${item.name} (${item.size || "Único"}) – ${item.quantity}x – ${formatBRL(item.price * item.quantity)}`;
+  }).join("\n");
 
-  const message = encodeURIComponent(cartText + customerInfo);
+  const total = cart.reduce((acc, i) => acc + (i.price * i.quantity), 0);
+
+  const deliveryText =
+    selectedDelivery === "delivery"
+      ? `🚚 *Forma de entrega:* Delivery\n📍 *Endereço:* ${addressInput.value}`
+      : `🚶 *Forma de entrega:* Retirada no local`;
+
+  const message = `
+  🍕 *NOVO PEDIDO – PIZZA GRAU*
+
+  📦 *Itens do pedido:*
+  ${itemsText}
+
+  💰 *Total:* ${formatBRL(total)}
+
+  ${deliveryText}
+
+  👤 *Cliente:* ${nameInput.value}
+  📞 *Contato:* ${cellphoneInput.value}
+
+  📝 Pedido enviado via cardápio online
+  `.trim();
+
+  const encodedMessage = encodeURIComponent(message);
   const phone = "+5547984179856";
-  window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${message}`, "_blank");
+
+  window.open(
+    `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`,
+    "_blank"
+  );
+
 
   // limpa
   cart = [];
@@ -253,9 +282,16 @@ checkoutBtn.addEventListener("click", () => {
 // ==================== horário funcionamento visual ====================
 (function updateOpenBadge() {
   const spanItem = document.getElementById("date-span");
-  const now = new Date().getHours();
   if (!spanItem) return;
-  if (now >= 18 && now < 23) {
+
+  const now = new Date();
+  const hour = now.getHours();
+  const day = now.getDay(); // 0 = domingo, 1 = segunda, ..., 6 = sábado
+
+  const isOpenDay = day !== 1; // fechado na segunda
+  const isOpenHour = hour >= 18 && hour < 23;
+
+  if (isOpenDay && isOpenHour) {
     spanItem.classList.remove("bg-red-500");
     spanItem.classList.add("bg-green-600");
   } else {
@@ -263,4 +299,3 @@ checkoutBtn.addEventListener("click", () => {
     spanItem.classList.add("bg-red-500");
   }
 })();
-// ==================== Fim do script ====================
